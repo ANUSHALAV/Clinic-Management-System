@@ -3,12 +3,13 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace Clinic_Management_System.Models.Masters
 {
-    public class CountryMaster
+    public class DistrictMaster
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string CountryId { get; set; }
-        public string CountryName { get; set; }
+        public string DistrictId { get; set; }
+        public string DistrictName { get; set; }
+        public string StateId { get; set; }
         public int Status { get; set; }
     }
 }

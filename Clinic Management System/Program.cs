@@ -1,3 +1,9 @@
+using Clinic_Management_System.Configurations;
+using Clinic_Management_System.Services.Implementations;
+using Clinic_Management_System.Services.Interfaces;
+using Microsoft.Extensions.Options;
+using System.Runtime;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,7 +13,16 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// appsettings ke dbsetting wale section ki value ko strongly typed class me bind kar 
+builder.Services.Configure<DBSettings>(builder.Configuration.GetSection("DBSettings"));
+
+builder.Services.AddSingleton(sp => sp.GetRequiredService<IOptions<DBSettings>>().Value);
+
+// Service Register
+builder.Services.AddScoped<IMasterService, MasterService>();
+
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
