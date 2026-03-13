@@ -14,7 +14,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // appsettings ke dbsetting wale section ki value ko strongly typed class me bind kar 
-builder.Services.Configure<DBSettings>(builder.Configuration.GetSection("DBSettings"));
+builder.Services.Configure<DBSettings>(builder.Configuration.GetSection("DBSetting"));
 
 builder.Services.AddSingleton(sp => sp.GetRequiredService<IOptions<DBSettings>>().Value);
 
